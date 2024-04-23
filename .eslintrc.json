@@ -1,3 +1,49 @@
 {
-  "extends": "next/core-web-vitals"
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "eslint-comments", "promise"],
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:eslint-comments/recommended",
+    "plugin:promise/recommended",
+    "airbnb/hooks",
+    "prettier"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    // Use function hoisting to improve code readability
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      { "functions": false, "classes": true, "variables": true }
+    ],
+    // Not working as intended
+    // TODO: take a look at ts configs
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+
+    // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins
+    "no-prototype-builtins": "off",
+
+    "import/prefer-default-export": "off",
+
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    // Too restrictive
+    "react/jsx-props-no-spreading": "off",
+    // Prefer readability
+    "react/no-unescaped-entities": "off",
+    // Allow abbreviation to be all uppercase
+    "unicorn/filename-case": "off",
+    // Common abbreviations are known and readable
+    "unicorn/prevent-abbreviations": "off",
+    // Airbnb prefers forEach
+    "unicorn/no-array-for-each": "off",
+    // Too restrictive
+    "unicorn/no-array-reduce": "off"
+  }
 }
